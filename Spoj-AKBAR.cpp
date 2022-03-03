@@ -9,52 +9,44 @@ public:
         this->v=v;
         e=new list <int > [v]; //adjacency list
         visited=new bool[v];
-        for(int x=0;x<v;x++){
-            visited[x]=false;
-        }
     }
     void addEdge(int x,int y){  // void addEdge(string x , string y){}
                                 // e[x].push_back(y);
         e[x].push_back(y);
         e[y].push_back(x);
     }
+    void memset_(){
+        memset(visited,0,sizeof(visited));
+        visited[0]=true;
+        visited[v]=true;
+    }
     bool check(){
-       bool flag = true;
-       for (int i=1 ;i<v;i++)
-       {
+       for (int i=0 ;i<v;i++)
+       {    //cout << "i : " << i << " " ;
             if(visited[i]==false)
             {
                 return false ;
 
             }
        }
-       return flag;
+       cout << endl;
+       return true;
     }
-    /*void printEdge(){  // printing graph
-        for (int i=0;i<v;i++){
-            cout << i << "--->" ;
-            for (auto x:e[i]){
-                cout<<x;
-            }
-            cout << endl;
-        }
-    }*/
-    bool BFS(int starting_vertex,int l){ // Breadth First Search function call
-        queue <int > stored_v_q; // queue for storing to visit neibhors
-        stored_v_q.push(starting_vertex);
-        //path.push_back(starting_vertex);
-        visited[starting_vertex]=true;
-        while(!stored_v_q.empty()){ // until queue is empty
-            if(l==0)break;
-            starting_vertex=stored_v_q.front();
-            stored_v_q.pop();
-            for(auto nbr:e[starting_vertex]){
+
+    bool BFS(int s,int l){ // Breadth First Search function call
+        queue <int > q; // queue for storing to visit neibhors
+        q.push(s);
+        visited[s]=true;
+        if(l==0)return true;
+        while(!q.empty()){ // until queue is empty
+            s=q.front();q.pop();
+            for(auto nbr:e[s]){
                 //cout << "neighbors of parent vertex : " << nbr << endl;
                 if(!visited[nbr]){
-                    stored_v_q.push(nbr);
+                    q.push(nbr);
                     visited[nbr]=true;
                     l--;
-                    if(l==0)break;
+                    if(l==0)return true;
                 }
             }
         }
@@ -67,17 +59,18 @@ int main(){
     int t;
     scanf("%d",&t);
     while(t--){
-        int v,edge,m;scanf("%d %d %d",&v,&edge,&m);
+        int v,edge,m;cin >> v >> edge >> m;
         G graph(v+1);
+        graph.memset_();
         while(edge--){
             int a,b;
             scanf("%d %d",&a,&b);
             graph.addEdge(a,b);
         }
         while(m--){
-            int s,l;
-            scanf("%d %d",&s,&l);
-            graph.BFS(s,l);
+            int w,strong;
+            cin >> w >> strong ;
+            graph.BFS(w,strong);
         }
         bool flag = graph.check();
         if (flag==true)cout << "YES" << endl;

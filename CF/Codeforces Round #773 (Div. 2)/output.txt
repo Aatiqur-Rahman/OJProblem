@@ -1,0 +1,25 @@
+idx :  1
+idx :  1
+idx :  1
+idx :  17
+idx :  17
+idx :  5
+idx :  5
+idx :  3
+idx :  1
+idx :  1
+idx :  17
+idx :  9
+idx :  7
+idx :  3
+idx :  1
+idx :  15
+ map 
+1 7
+3 2
+5 2
+7 1
+9 1
+15 1
+17 3
+5

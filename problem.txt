@@ -1,0 +1,10 @@
+unique number (1,2,3,.....n),
+missing number (1)
+lucky number 
+Taddas and saDDas 
+maximum xor
+square and cubes
+Rotation in sorted array 
+gospers hack 
+birthday paradox 
+
